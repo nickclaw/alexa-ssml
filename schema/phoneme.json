@@ -1,0 +1,21 @@
+{
+    "title": "phoneme",
+    "description": "",
+    "tag": "phoneme",
+
+    "type": "object",
+    "required": [],
+    "properties": {
+        "alphabet": {
+            "enum": [
+                "ipa",
+                "x-sampa",
+                "nt-sampa"
+            ]
+        },
+
+        "ph": {
+            "type": "string"
+        }
+    }
+}

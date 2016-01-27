@@ -1,0 +1,13 @@
+{
+    "title": "audio",
+    "description": "",
+    "tag": "audio",
+
+    "type": "object",
+    "required": ["src"],
+    "properties": {
+        "src": {
+            "type": "string"
+        }
+    }
+}

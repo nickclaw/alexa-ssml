@@ -1,0 +1,41 @@
+{
+    "title": "sayAs",
+    "description": "",
+    "tag": "say-as",
+
+    "type": "object",
+    "required": [],
+    "properties": {
+        "interpretAs": {
+            "enum": [
+                "characters",
+                "spell-out",
+                "cardinal",
+                "number",
+                "ordinal",
+                "digits",
+                "fraction",
+                "unit",
+                "date",
+                "time",
+                "telephone",
+                "address"
+            ]
+        },
+
+        "format": {
+            "enum": [
+                "mdy",
+                "dmy",
+                "ymd",
+                "md",
+                "dm",
+                "ym",
+                "my",
+                "d",
+                "m",
+                "y"
+            ]
+        }
+    }
+}

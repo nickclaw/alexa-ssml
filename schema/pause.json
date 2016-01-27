@@ -1,0 +1,25 @@
+{
+    "title": "pause",
+    "description": "",
+    "tag": "break",
+
+    "required": [],
+    "type": "object",
+    "properties": {
+        "strength": {
+            "enum": [
+                "none",
+                "x-weak",
+                "weak",
+                "medium",
+                "strong",
+                "x-strong"
+            ]
+        },
+        "time": {
+            "type": "integer",
+            "min": 0,
+            "max": 10000
+        }
+    }
+}

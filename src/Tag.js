@@ -2,8 +2,8 @@ import { propsToString } from './propsToString';
 
 export class Tag {
 
-    constructor(tag, props) {
-        this.tag = tag;
+    constructor(schema, props) {
+        this.schema = schema;
         this.props = props;
         this.children = [];
     }
@@ -14,18 +14,26 @@ export class Tag {
     }
 
     toString(indent = 0) {
+        const { schema, props, children } = this;
+        const { tag } = schema;
         const ws = new Array(indent + 1).join("    ");
-        let el = `${ws}<${this.tag}${propsToString(this.props)}>`;
+        let el = ws;
+
+        el += `<${tag}${propsToString(props)}>`;
 
         if (this.children.length) {
             el += '\n';
             this.children.forEach(child => {
-                el += child.toString(indent + 1);
+                if (child instanceof Tag) {
+                    el += child.toString(indent + 1);
+                } else {
+                    el += ws + ws + child.trim() + '\n';
+                }
             });
             el += ws;
         }
 
-        el += `</${this.tag}>\n`;
+        el += `</${tag}>\n`;
 
         return el;
     }
