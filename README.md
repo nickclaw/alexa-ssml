@@ -9,9 +9,9 @@ Manipulate and validate the [subset of SSML](https://developer.amazon.com/public
 ```js
 /** @jsx ssml */
 
-import { ssml } from 'alexa-ssml';
+import { ssml, renderToString } from 'alexa-ssml';
 
-const data = (
+const tags = (
     <speak>
         Here is a number <w role="ivona:VBD">read</w> as a cardinal number:
         <sayAs interpretAs="cardinal">12345</sayAs>.
@@ -19,7 +19,7 @@ const data = (
     </speak>
 );
 
-const raw = data.toString();
+const raw = renderToString(tags);
 ```
 
 ### Caveats
