@@ -1,0 +1,3 @@
+describe('<speak /> tag', function() {
+
+});

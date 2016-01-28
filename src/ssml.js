@@ -15,7 +15,6 @@ export function ssml(tag, props, ...children) {
 
     const result = tv4.validateMultiple(props, tagSchema);
     if (!result.valid) {
-        console.log(result);
         throw new Error("Invalid properties.");
     }
 

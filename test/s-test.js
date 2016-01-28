@@ -1,0 +1,3 @@
+describe('<s /> tag', function() {
+
+});
