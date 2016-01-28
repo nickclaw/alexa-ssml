@@ -1,8 +1,9 @@
-# alexa-ssml
+# alexa-ssml [![Build Status](https://travis-ci.org/nickclaw/alexa-ssml.svg?branch=master)](https://travis-ci.org/nickclaw/alexa-ssml)
+
+Manipulate and validate the [subset of SSML](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference) supported by the [Alexa Skills Kit](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit)
 
 > npm install alexa-ssml
 
-Manipulate and validate the [subset of SSML](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference) supported by the [Alexa Skills Kit](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit)
 
 ### Example
 
