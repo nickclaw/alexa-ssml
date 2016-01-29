@@ -23,6 +23,24 @@ const tags = (
 const raw = renderToString(tags);
 ```
 
+### Custom Elements
+
+```
+/** @jsx ssml */
+
+import { ssml } from 'alexa-ssml';
+
+function LongPause(props) {
+    return <pause time={10000} />
+}
+
+const data = (
+    <speak>
+        Foo <LongPause /> bar.
+    </speak>
+)
+```
+
 ### Caveats
 
  * Only supports [limited syntax](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference)
