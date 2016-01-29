@@ -1,19 +1,19 @@
 /** @jsx ssml */
 
 import { ssml } from '../src/ssml';
-import { elementToString } from '../src/renderToString';
+import { renderToString } from '../src/renderToString';
 
 describe('ssml', function() {
 
     describe('custom elements', function() {
-        it.skip('should accept custom elements', function() {
-            function Valid(props) {
-                return <pause strength="none" {...props} />;
+        it('should accept custom elements', function() {
+            function Date(props) {
+                return <sayAs interpretAs="date" {...props} />;
             }
 
-            const data = <Valid time={10} />;
-            const string = elementToString(data);
-            expect(string).to.equal('<break strength="none" time="10ms"></break>\n');
+            const data = <speak><Date format="ymd" /></speak>;
+            const string = renderToString(data);
+            expect(string).to.contain('<say-as interpret-as="date" format="ymd"/>\n');
         });
 
         it('should throw if invalid elements are returned', function() {

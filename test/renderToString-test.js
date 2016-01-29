@@ -1,7 +1,7 @@
 /** @jsx ssml */
 
 import { ssml } from '../src/ssml';
-import { renderToString, propsToString } from '../src/renderToString';
+import { renderToString } from '../src/renderToString';
 
 describe('renderToString', function() {
 
@@ -11,28 +11,13 @@ describe('renderToString', function() {
         expect(() => renderToString([<speak />])).to.throw();
     });
 
-    it('should render with indentation', function() {
-        const data = (
-            <speak>
-                <p>Hello world!</p>
-            </speak>
-        );
-        const expected = `<speak>\n    <p>\n        Hello world!\n    </p>\n</speak>\n`;
-
-        expect(renderToString(data)).to.equal(expected);
-    });
-
     it('should render props as camel cased', function() {
-        const props = {
-            foo: "bar",
-            fooBar: ""
-        };
-        const expected = ``
+        const make = props => <speak>{{tag: 'test', props}}</speak>;
 
-        expect(propsToString({ foo: 'bar' })).to.equal('foo="bar"');
-        expect(propsToString({ FOO: 'bar' })).to.equal('foo="bar"');
-        expect(propsToString({ fooBar: 'baz' })).to.equal('foo-bar="baz"');
-        expect(propsToString({ 'foo-bar': 'baz' })).to.equal('foo-bar="baz"');
-        expect(propsToString({ foo_bar: 'baz'})).to.equal('foo-bar="baz"');
+        expect(renderToString(make({ foo: 'bar' }))).to.contain('foo="bar"');
+        expect(renderToString(make({ FOO: 'bar' }))).to.contain('foo="bar"');
+        expect(renderToString(make({ fooBar: 'baz' }))).to.contain('foo-bar="baz"');
+        expect(renderToString(make({ 'foo-bar': 'baz' }))).to.contain('foo-bar="baz"');
+        expect(renderToString(make({ foo_bar: 'baz'}))).to.contain('foo-bar="baz"');
     });
 });

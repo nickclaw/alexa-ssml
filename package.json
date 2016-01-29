@@ -19,7 +19,8 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.0.1",
-    "tv4": "^1.2.7"
+    "tv4": "^1.2.7",
+    "xmlbuilder": "^4.2.1"
   },
   "devDependencies": {
     "babel": "^6.3.26",

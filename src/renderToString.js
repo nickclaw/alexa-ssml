@@ -1,47 +1,39 @@
-import map from 'lodash/map';
-import kebabCase from 'lodash/kebabCase';
+import builder from 'xmlbuilder';
+import XMLStringifier from 'xmlbuilder/lib/XMLStringifier';
+import each from 'lodash/each';
 import get from 'lodash/get';
-import isEmpty from 'lodash/isEmpty';
+import kebabCase from 'lodash/kebabCase';
 
-/**
- * Object to props string
- * @param {Object.<String,String>} props
- * @return {String}
- */
-export function propsToString(props) {
-    return map(props, (val, key) => {
-        return `${kebabCase(key)}="${val}"`;
-    }).join(" ");
+// custom stringify options for xml builder
+// just kebab-cases all attributes and tag names
+const stringify = {
+
+    eleName(val = "") {
+        val = kebabCase(val || "");
+        return this.assertLegalChar(val);
+    },
+
+    attName(val) {
+        val = kebabCase(val || "");
+        return this.assertLegalChar(val);
+    }
 }
 
 /**
- * Nested json to string with indentation
- * @param {Object} props
- * @param {Integer} indent
- * @return {String}
+ * Recursively turns jsx children into xml nodes
+ * @param {Array} children
+ * @param {XMLNode} node
  */
-export function elementToString(el, indent = 0) {
-    const { tag, props, children } = el;
-    const ws = new Array(indent + 1).join("    ");
-    const propString = isEmpty(props) ? "" : " " + propsToString(props);
-
-    let raw = ws;
-    raw += `<${tag}${propString}>`;
-
-    if (children.length) {
-        raw += '\n';
-        children.forEach(child => {
-            if (child && child.tag) {
-                raw += elementToString(child, indent + 1);
-            } else {
-                raw += ws + "    " + child.trim() + '\n';
-            }
-        });
-        raw += ws;
-    }
-
-    raw += `</${tag}>\n`;
-    return raw;
+export function renderNode(children, node) {
+    each(children, child => {
+        if (child && child.tag) {
+            node.ele(child.tag, child.props);
+            renderNode(child.children, node);
+            node.end();
+        } else {
+            node.text(child);
+        }
+    });
 }
 
 /**
@@ -50,9 +42,10 @@ export function elementToString(el, indent = 0) {
  * @return {String}
  */
 export function renderToString(data) {
-    const rootTag = get(data, 'tag');
-    if (rootTag !== 'speak')
+    if (get(data, 'tag') !== 'speak')
         throw new Error(`SSML must start with a "speak" tag, currently "${rootTag}"`);
 
-    return elementToString(data, 0);
+    const xml = builder.create(data.tag, {}, {}, { stringify });
+    renderNode(data.children, xml);
+    return xml.end({ pretty: true });
 }

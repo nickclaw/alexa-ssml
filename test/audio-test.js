@@ -17,9 +17,5 @@ describe('<audio /> tag', function() {
         it('should accept HTTPS urls', function() {
             expect(() => <audio src="https://example.com" /> ).to.not.throw();
         });
-
-        it.skip('should escape the url when rendered', function() {
-
-        });
     });
 });
