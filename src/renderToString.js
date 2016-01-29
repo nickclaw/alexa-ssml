@@ -1,5 +1,7 @@
-import reduce from 'lodash/reduce';
+import map from 'lodash/map';
 import kebabCase from 'lodash/kebabCase';
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
 
 /**
  * Object to props string
@@ -7,9 +9,9 @@ import kebabCase from 'lodash/kebabCase';
  * @return {String}
  */
 export function propsToString(props) {
-    return reduce(props, (memo, val, key) => {
-        return memo + ` ${kebabCase(key)}="${val}"`;
-    }, "");
+    return map(props, (val, key) => {
+        return `${kebabCase(key)}="${val}"`;
+    }).join(" ");
 }
 
 /**
@@ -18,12 +20,13 @@ export function propsToString(props) {
  * @param {Integer} indent
  * @return {String}
  */
-export function elementToString(el, indent) {
+export function elementToString(el, indent = 0) {
     const { tag, props, children } = el;
     const ws = new Array(indent + 1).join("    ");
+    const propString = isEmpty(props) ? "" : " " + propsToString(props);
 
     let raw = ws;
-    raw += `<${tag}${propsToString(props)}>`;
+    raw += `<${tag}${propString}>`;
 
     if (children.length) {
         raw += '\n';
@@ -43,9 +46,13 @@ export function elementToString(el, indent) {
 
 /**
  * Nested JSON to pretty string
- * @param {Object} props
+ * @param {Object} data
  * @return {String}
  */
-export function renderToString(el) {
-    return elementToString(el, 0);
+export function renderToString(data) {
+    const rootTag = get(data, 'tag');
+    if (rootTag !== 'speak')
+        throw new Error(`SSML must start with a "speak" tag, currently "${rootTag}"`);
+
+    return elementToString(data, 0);
 }
