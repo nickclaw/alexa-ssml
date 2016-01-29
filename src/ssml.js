@@ -1,26 +1,28 @@
 import tv4 from 'tv4';
 import flatten from 'lodash/flatten';
-import { Tag } from './Tag';
-import { schema } from './schema';
+import get from 'lodash/get';
+import * as schemas from './schema';
 
-export function ssml(tag, props, ...children) {
-    tag = tag.toLowerCase();
-    props = props || {};
+export function ssml(tag, props, ...args) {
+    const children = flatten(args);
 
-    // get schema
-    const tagSchema = schema[tag];
-    if (!tagSchema) {
-        throw new Error("Unknown tag.");
-    }
+    if (typeof tag === "function")
+        return tag({ ...props, children });
 
-    const result = tv4.validateMultiple(props, tagSchema);
-    if (!result.valid) {
-        throw new Error("Invalid properties.");
-    }
+    if (typeof tag !== "string")
+        throw new Error();
 
-    // build tag and append children
-    const el = new Tag({tag}, props);
-    flatten(children).map(child => el.addChild(child));
+    const schema = schemas[tag.toLowerCase()];
+    if (!schema)
+        throw new Error();
 
-    return el;
+    const validationResults = tv4.validateMultiple(props || {}, schema);
+    if (!validationResults.valid)
+        throw new Error();
+
+    return {
+        tag: schema.tag,
+        props,
+        children
+    };
 }

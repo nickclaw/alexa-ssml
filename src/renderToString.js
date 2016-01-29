@@ -1,6 +1,5 @@
 import reduce from 'lodash/reduce';
 import kebabCase from 'lodash/kebabCase';
-import { Tag } from './Tag';
 
 /**
  * Object to props string
@@ -13,29 +12,40 @@ export function propsToString(props) {
     }, "");
 }
 
-export function tagToString(tag, indent) {
-    const { schema, props, children } = tag;
+/**
+ * Nested json to string with indentation
+ * @param {Object} props
+ * @param {Integer} indent
+ * @return {String}
+ */
+export function elementToString(el, indent) {
+    const { tag, props, children } = el;
     const ws = new Array(indent + 1).join("    ");
 
-    let el = ws;
-    el += `<${schema.tag}${propsToString(props)}>`;
+    let raw = ws;
+    raw += `<${tag}${propsToString(props)}>`;
 
-    if (tag.children.length) {
-        el += '\n';
-        tag.children.forEach(child => {
-            if (child instanceof Tag) {
-                el += tagToString(child, indent + 1);
+    if (children.length) {
+        raw += '\n';
+        children.forEach(child => {
+            if (child && child.tag) {
+                raw += elementToString(child, indent + 1);
             } else {
-                el += ws + ws + child.toString().trim() + '\n';
+                raw += ws + ws + child.trim() + '\n';
             }
         });
-        el += ws;
+        raw += ws;
     }
 
-    el += `</${schema.tag}>\n`;
-    return el;
+    raw += `</${tag}>\n`;
+    return raw;
 }
 
-export function renderToString(tag) {
-    return tagToString(tag, 0);
+/**
+ * Nested JSON to pretty string
+ * @param {Object} props
+ * @return {String}
+ */
+export function renderToString(el) {
+    return elementToString(el, 0);
 }
