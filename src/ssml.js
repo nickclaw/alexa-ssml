@@ -10,15 +10,15 @@ export function ssml(tag, props, ...args) {
         return tag({ ...props, children });
 
     if (typeof tag !== "string")
-        throw new Error();
+        throw new Error(`Invalid tag: ${tag}`);
 
     const schema = schemas[tag.toLowerCase()];
     if (!schema)
-        throw new Error();
+        throw new Error(`Unknown tag: ${tag}`);
 
-    const validationResults = tv4.validateMultiple(props || {}, schema);
-    if (!validationResults.valid)
-        throw new Error();
+    const { error, dataPath } = tv4.validateResult(props || {}, schema, false, true);
+    if (error)
+        throw new Error(`Invalid value for property ${dataPath.slice(1)}: ${error.message}`);
 
     return {
         tag: schema.tag,
