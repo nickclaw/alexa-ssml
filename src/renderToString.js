@@ -34,7 +34,7 @@ export function elementToString(el, indent = 0) {
             if (child && child.tag) {
                 raw += elementToString(child, indent + 1);
             } else {
-                raw += ws + ws + child.trim() + '\n';
+                raw += ws + "    " + child.trim() + '\n';
             }
         });
         raw += ws;
