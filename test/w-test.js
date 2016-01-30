@@ -1,3 +1,0 @@
-describe('<w /> tag', function() {
-
-});

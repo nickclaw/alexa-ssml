@@ -1,3 +1,0 @@
-describe('<p /> tag', function() {
-
-});
