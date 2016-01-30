@@ -1,6 +1,6 @@
 {
   "name": "alexa-ssml",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "JSX for Alexa Skills Kit SSML",
   "main": "lib/index.js",
   "scripts": {
