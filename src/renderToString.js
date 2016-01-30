@@ -15,7 +15,7 @@ const stringify = {
 
     attName(val) {
         val = kebabCase(val || "");
-        return this.assertLegalChar(val);
+        return val;
     }
 }
 
@@ -45,7 +45,11 @@ export function renderToString(data) {
     if (get(data, 'tag') !== 'speak')
         throw new Error(`SSML must start with a "speak" tag, currently "${rootTag}"`);
 
-    const xml = builder.create(data.tag, {}, {}, { stringify });
+    const xml = builder.create(data.tag, {
+        stringify: stringify,
+        headless: true
+    });
     renderNode(data.children, xml);
+
     return xml.end({ pretty: true });
 }
