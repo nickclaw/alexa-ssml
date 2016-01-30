@@ -1,16 +1,30 @@
 {
   "name": "alexa-ssml",
   "version": "0.3.0",
-  "description": "",
+  "description": "JSX for Alexa Skills Kit SSML",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./scripts/test.sh"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/nickclaw/alexa-ssml"
   },
-  "keywords": [],
+  "bugs": {
+    "url": "http://github.com/nickclaw/alexa-ssml/issues"
+  },
+  "keywords": [
+    "alexa",
+    "skills",
+    "skill",
+    "kit",
+    "jsx",
+    "ssml",
+    "speech",
+    "markup",
+    "echo",
+    "ability"
+  ],
   "author": {
     "name": "Nicholas Clawson",
     "email": "nickclaw@gmail.com",
