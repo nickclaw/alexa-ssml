@@ -18,7 +18,9 @@ const testSchema = {
     }
 }
 
-
+function validate(props) { // utility function
+    return () => validateProps(props, testSchema);
+}
 
 describe('validateProps', function() {
 
@@ -26,6 +28,7 @@ describe('validateProps', function() {
         expect(validate({ foo: 1, bar: 5, baz: 'a' })).to.throw();
         expect(validate({ foo: '', bar: '', baz: 'a' })).to.throw();
         expect(validate({ foo: '', bar: 5, baz: 'd' })).to.throw();
+        expect(validate({ foo: '', bar: 5, baz: 'a' })).to.not.throw();
     });
 
     it('should throw when missing required properties', function() {
@@ -36,11 +39,15 @@ describe('validateProps', function() {
         expect(validate({ bar: 5, baz: 'a' })).to.throw();
     });
 
-    it.skip('should return a transformed properties object', function() {
-        // TODO need validator that supports transforming schema first
+    it('should omit the "children" property', function() {
+        const props = {
+            foo: '',
+            bar: 5,
+            baz: 'a',
+            children: []
+        }
+
+        const result = validateProps(props, testSchema);
+        expect(result).to.contain.keys('foo', 'bar', 'baz');
     });
 });
-
-function validate(props) {
-    return () => validateProps(props, testSchema);
-}

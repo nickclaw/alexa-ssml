@@ -1,8 +1,8 @@
-export audio from '../schema/audio';
-export pause from '../schema/pause';
-export p from '../schema/p';
-export phoneme from '../schema/phoneme';
-export s from '../schema/s';
-export sayas from '../schema/sayAs';
-export speak from '../schema/speak';
-export w from '../schema/w';
+export * as audio from './types/audio';
+export * as pause from './types/pause';
+export * as p from './types/p';
+export * as phoneme from './types/phoneme';
+export * as s from './types/s';
+export * as sayas from './types/sayAs';
+export * as speak from './types/speak';
+export * as w from './types/w';

@@ -1,7 +1,10 @@
-{
+import identity from 'lodash/identity';
+
+export const tag = 'audio';
+
+export const schema = {
     "title": "audio",
     "description": "",
-    "tag": "audio",
 
     "type": "object",
     "required": ["src"],
@@ -12,3 +15,5 @@
         }
     }
 }
+
+export const transform = identity;

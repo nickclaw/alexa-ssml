@@ -25,7 +25,7 @@ describe('<pause /> tag', function() {
 
     describe('time property', function() {
 
-        it.skip('should render as milliseconds', function() {
+        it('should render time as milliseconds', function() {
             const string = renderToString(<speak><pause time={1000} /></speak>);
             expect(string).to.contain("1000ms");
         });

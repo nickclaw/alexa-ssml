@@ -1,7 +1,10 @@
-{
+import identity from 'lodash/identity';
+
+export const tag = 'phoneme';
+
+export const schema = {
     "title": "phoneme",
     "description": "",
-    "tag": "phoneme",
 
     "type": "object",
     "required": [],
@@ -19,3 +22,5 @@
         }
     }
 }
+
+export const transform = identity;

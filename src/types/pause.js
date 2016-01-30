@@ -1,7 +1,10 @@
-{
+import identity from 'lodash/identity';
+
+export const tag = 'break';
+
+export const schema = {
     "title": "pause",
     "description": "",
-    "tag": "break",
 
     "required": [],
     "type": "object",
@@ -23,3 +26,12 @@
         }
     }
 }
+
+export const transform = function(props) {
+    if ("time" in props) {
+        const time = `${props.time}ms`;
+        props = { ...props, time };
+    }
+
+    return props;
+};

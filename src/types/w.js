@@ -1,7 +1,10 @@
-{
+import identity from 'lodash/identity';
+
+export const tag = 'w';
+
+export const schema = {
     "title": "w",
     "description": "",
-    "tag": "w",
 
     "type": "object",
     "required": [],
@@ -16,3 +19,5 @@
         }
     }
 }
+
+export const transform = identity;

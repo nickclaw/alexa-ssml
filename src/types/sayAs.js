@@ -1,7 +1,10 @@
-{
+import identity from 'lodash/identity';
+
+export const tag = 'say-as';
+
+export const schema = {
     "title": "sayAs",
     "description": "",
-    "tag": "say-as",
 
     "type": "object",
     "required": [],
@@ -39,3 +42,5 @@
         }
     }
 }
+
+export const transform = identity;

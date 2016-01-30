@@ -15,15 +15,16 @@ export function ssml(tag, props, ...args) {
         throw new Error(`Invalid tag: ${tag}`);
 
     //  make sure we have a known tag
-    const schema = schemas[tag.toLowerCase()];
-    if (!schema)
+    const type = schemas[tag.toLowerCase()];
+    if (!type)
         throw new Error(`Unknown tag: ${tag}`);
 
     // validate and transform props
-    props = validateProps(props, schema);
+    props = validateProps(props, type.schema);
+    props = type.transform(props);
 
     return {
-        tag: schema.tag,
+        tag: type.tag,
         props: props,
         children
     };
