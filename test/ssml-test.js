@@ -47,10 +47,6 @@ describe('ssml', function() {
         expect(() => <s />).to.not.throw();
     });
 
-    it('should validate properties on tags', function() {
-
-    });
-
     it('should return an object', function() {
         const data = (
             <p>
