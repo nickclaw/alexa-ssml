@@ -4,6 +4,11 @@ Manipulate and validate the [subset of SSML](https://developer.amazon.com/public
 
 > npm install alexa-ssml
 
+* Only supports [limited syntax](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference)
+* Camel case tag names and properties.
+* `<break />` changed to `<pause />`
+* Compatible with `transform-react-jsx` [babel plugin](https://babeljs.io/docs/plugins/transform-react-jsx/)
+
 
 ### Example
 
@@ -25,7 +30,7 @@ const raw = renderToString(tags);
 
 ### Custom Elements
 
-```
+```js
 /** @jsx ssml */
 
 import { ssml } from 'alexa-ssml';
@@ -41,9 +46,14 @@ const data = (
 )
 ```
 
-### Caveats
 
- * Only supports [limited syntax](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference)
- * Only supports `camelCase` tag names and properties.
- * `<break />` -> `<pause />` due to javascript reserved words.
- * Must use with `transform-react-jsx` [babel plugin](https://babeljs.io/docs/plugins/transform-react-jsx/).
+### API
+
+##### `ssml(tag, props, ...children) -> object`
+ * `tag` can be  a string or function
+ * Use `/** @jsx ssml */` to support jsx syntax
+ * Returns object like `{ tag, props, children }`
+
+##### `renderToString(data) -> string`
+ * Takes in object from `ssml` function
+ * Must be wrapped in a `"speak"` tag
