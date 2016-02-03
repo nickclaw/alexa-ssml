@@ -1,23 +1,22 @@
 import builder from 'xmlbuilder';
-import XMLStringifier from 'xmlbuilder/lib/XMLStringifier';
 import each from 'lodash/each';
 import get from 'lodash/get';
 import kebabCase from 'lodash/kebabCase';
 
 // custom stringify options for xml builder
 // just kebab-cases all attributes and tag names
-const stringify = {
+const customStringifyOptions = {
 
-    eleName(val = "") {
-        val = kebabCase(val || "");
+    eleName(val = '') {
+        val = kebabCase(val || ''); // eslint-disable-line no-param-reassign
         return this.assertLegalChar(val);
     },
 
     attName(val) {
-        val = kebabCase(val || "");
+        val = kebabCase(val || ''); // eslint-disable-line no-param-reassign
         return val;
-    }
-}
+    },
+};
 
 /**
  * Recursively turns jsx children into xml nodes
@@ -42,12 +41,14 @@ export function renderNode(children, node) {
  * @return {String}
  */
 export function renderToString(data) {
-    if (get(data, 'tag') !== 'speak')
-        throw new Error(`SSML must start with a "speak" tag, currently "${rootTag}"`);
+    const rootTag = get(data, 'tag');
+    if (rootTag !== 'speak') {
+        throw new Error(`SSML must start with a 'speak' tag, currently '${rootTag}'`);
+    }
 
     const xml = builder.create(data.tag, {
-        stringify: stringify,
-        headless: true
+        stringify: customStringifyOptions,
+        headless: true,
     });
     renderNode(data.children, xml);
 

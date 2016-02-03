@@ -8,18 +8,23 @@ import omit from 'lodash/omit';
  * @return {Object} validated props
  */
 export function validateProps(props, schema) {
-    props = omit(props, 'children');
-    const { error } = tv4.validateResult(props, schema, false, true);
+    const itemProps = omit(props, 'children'); // TODO add child count validation too?
+    const { error } = tv4.validateResult(itemProps, schema, false, true);
 
     if (error) {
-        if (error.dataPath)
-            throw new Error(`Unknown property: ${error.dataPath.slice(1)}`);
+        if (error.dataPath) {
+            const propName = error.dataPath.slice(1);
+            throw new Error(`Unknown property: ${propName}`);
+        }
 
-        if (error.srcPath)
-            throw new Error(`Invalid value for property ${error.srcPath.slice(1)}: ${error.message}`);
+        if (error.srcPath) {
+            const propName = error.srcPath.slice(1);
+            const reason = error.message;
+            throw new Error(`Invalid value for property ${propName}: ${reason}`);
+        }
 
         throw new Error(error.message);
     }
 
-    return props;
+    return itemProps;
 }
