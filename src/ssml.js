@@ -1,9 +1,9 @@
 import get from 'lodash/get';
 import flattenDeep from 'lodash/flattenDeep';
 import * as schemas from './schema';
-import { validateProps } from './validateProps';
+import validateProps from './validateProps';
 
-export function ssml(tag, props, ...args) {
+export default function ssml(tag, props, ...args) {
     const children = flattenDeep(args.length ? args : get(props, 'children', []));
 
     // handle custom elements (only functions for now)

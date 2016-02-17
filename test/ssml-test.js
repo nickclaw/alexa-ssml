@@ -1,5 +1,5 @@
-import { ssml } from '../src/ssml';
-import { renderToString } from '../src/renderToString';
+import ssml from '../src/ssml';
+import renderToString from '../src/renderToString';
 
 describe('ssml', function() {
 

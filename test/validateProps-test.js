@@ -1,4 +1,4 @@
-import { validateProps } from '../src/validateProps';
+import validateProps from '../src/validateProps';
 
 const testSchema = {
     "type": "object",
