@@ -1,5 +1,3 @@
-/** @jsx ssml */
-
 import { ssml } from '../src/ssml';
 import { renderToString } from '../src/renderToString';
 

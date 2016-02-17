@@ -13,8 +13,6 @@ Manipulate and validate the [subset of SSML](https://developer.amazon.com/public
 ### Example
 
 ```js
-/** @jsx ssml */
-
 import { ssml, renderToString } from 'alexa-ssml';
 
 const tags = (
@@ -31,8 +29,6 @@ const raw = renderToString(tags);
 ### Custom Elements
 
 ```js
-/** @jsx ssml */
-
 import { ssml } from 'alexa-ssml';
 
 function LongPause(props) {
@@ -51,9 +47,21 @@ const data = (
 
 ##### `ssml(tag, props, ...children) -> object`
  * `tag` can be  a string or function
- * Use `/** @jsx ssml */` to support jsx syntax
  * Returns object like `{ tag, props, children }`
 
 ##### `renderToString(data) -> string`
  * Takes in object from `ssml` function
  * Must be wrapped in a `"speak"` tag
+
+
+### JSX Syntax
+
+To use SSML JSX syntax directly in JavaScript add `/** @jsx ssml */` to the top of the file or configure `transform-react-jsx` using `.babelrc`:
+
+```json
+{
+    "plugins": [
+        ["transform-react-jsx", { "pragma": "ssml" }]
+    ]
+}
+```

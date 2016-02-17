@@ -4,6 +4,6 @@
         "stage-1"
     ],
     "plugins": [
-        "transform-react-jsx"
+        ["transform-react-jsx", { "pragma": "ssml" }]
     ]
 }
