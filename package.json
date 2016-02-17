@@ -4,7 +4,15 @@
   "description": "JSX for Alexa Skills Kit SSML",
   "main": "lib/index.js",
   "scripts": {
-    "test": "./scripts/test.sh"
+    "build": "rm -rf lib && babel src --out-dir lib",
+    "lint": "eslint src",
+    "pretest": "npm run lint",
+    "test": "mocha test --require babel-register --require test/setup --check-leaks --throw-deprecation",
+    "prepublish": "npm run build",
+    "publish:major": "npm version major && npm publish",
+    "publish:minor": "npm version minor && npm publish",
+    "publish:patch": "npm version patch && npm publish",
+    "postpublish": "git push origin master --tags"
   },
   "repository": {
     "type": "git",
