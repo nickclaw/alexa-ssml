@@ -7,7 +7,7 @@ import omit from 'lodash/omit';
  * @param {Object} schema
  * @return {Object} validated props
  */
-export function validateProps(props, schema) {
+export default function validateProps(props, schema) {
     const itemProps = omit(props, 'children'); // TODO add child count validation too?
     const { error } = tv4.validateResult(itemProps, schema, false, true);
 

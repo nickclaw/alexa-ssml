@@ -23,7 +23,7 @@ const customStringifyOptions = {
  * @param {Array} children
  * @param {XMLNode} node
  */
-export function renderNode(children, node) {
+function renderNode(children, node) {
     each(children, child => {
         if (child && child.tag) {
             node.ele(child.tag, child.props);
@@ -40,7 +40,7 @@ export function renderNode(children, node) {
  * @param {Object} data
  * @return {String}
  */
-export function renderToString(data) {
+export default function renderToString(data) {
     const rootTag = get(data, 'tag');
     if (rootTag !== 'speak') {
         throw new Error(`SSML must start with a 'speak' tag, currently '${rootTag}'`);
