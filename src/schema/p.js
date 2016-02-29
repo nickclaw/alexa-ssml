@@ -1,5 +1,3 @@
-import identity from 'lodash/identity';
-
 export const tag = 'p';
 
 export const schema = {
@@ -12,5 +10,3 @@ export const schema = {
 
     },
 };
-
-export const transform = identity;
