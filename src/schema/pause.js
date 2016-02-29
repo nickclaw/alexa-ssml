@@ -25,11 +25,7 @@ export const schema = {
     },
 };
 
-export const transform = props => {
-    if ('time' in props) {
-        const time = `${props.time}ms`;
-        return { ...props, time };
-    }
-
-    return props;
-};
+export const transform = ({ time, ...props }) => ({
+    ...props,
+    ...(time && { time: `${time}ms` }),
+});
