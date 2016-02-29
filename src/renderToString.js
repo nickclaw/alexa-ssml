@@ -19,7 +19,7 @@ const customStringifyOptions = {
  * @param {XMLNode} node
  */
 function renderNode(node, children = []) {
-    Array.from(children).forEach(child => {
+    [...children].forEach(child => {
         if (child && child.tag) {
             node.ele(child.tag, child.props);
             renderNode(child.children, node);
