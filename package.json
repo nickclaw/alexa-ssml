@@ -3,6 +3,7 @@
   "version": "0.3.2",
   "description": "JSX for Alexa Skills Kit SSML",
   "main": "lib/index.js",
+  "jsnext:main": "src/index.js",
   "scripts": {
     "build": "rm -rf lib && babel src --out-dir lib",
     "lint": "eslint src",
