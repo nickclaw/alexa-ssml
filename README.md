@@ -49,9 +49,11 @@ const data = (
  * `tag` can be  a string or function
  * Returns object like `{ tag, props, children }`
 
-##### `renderToString(data) -> string`
+##### `renderToString(data, [options]) -> string`
  * Takes in object from `ssml` function
  * Must be wrapped in a `"speak"` tag
+ * Supported options:
+   * `pretty`, defaults to false. Makes the SSML easier to read.
 
 
 ### JSX Syntax
