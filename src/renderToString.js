@@ -40,7 +40,7 @@ function renderNode(children, node) {
  * @param {Object} data
  * @return {String}
  */
-export default function renderToString(data, pretty = false) {
+export default function renderToString(data, options = {}) {
     const rootTag = get(data, 'tag');
     if (rootTag !== 'speak') {
         throw new Error(`SSML must start with a 'speak' tag, currently '${rootTag}'`);
@@ -52,5 +52,5 @@ export default function renderToString(data, pretty = false) {
     });
     renderNode(data.children, xml);
 
-    return xml.end({ pretty });
+    return xml.end(options);
 }
