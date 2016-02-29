@@ -6,15 +6,12 @@ import kebabCase from 'lodash/kebabCase';
 // custom stringify options for xml builder
 // just kebab-cases all attributes and tag names
 const customStringifyOptions = {
-
     eleName(val = '') {
-        val = kebabCase(val || ''); // eslint-disable-line no-param-reassign
-        return this.assertLegalChar(val);
+        return this.assertLegalChar(kebabCase(val));
     },
 
-    attName(val) {
-        val = kebabCase(val || ''); // eslint-disable-line no-param-reassign
-        return val;
+    attName(val = '') {
+        return kebabCase(val);
     },
 };
 
