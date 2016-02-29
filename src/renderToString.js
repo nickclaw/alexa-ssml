@@ -22,7 +22,7 @@ function renderNode(node, children = []) {
     [...children].forEach(child => {
         if (child && child.tag) {
             node.ele(child.tag, child.props);
-            renderNode(child.children, node);
+            renderNode(node, child.children);
             node.end();
         } else {
             node.text(child);
