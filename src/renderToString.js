@@ -35,9 +35,7 @@ function renderNode(node, children = []) {
  * @param {Object} data
  * @return {String}
  */
-export default function renderToString(data, options = {}) {
-    const { tag } = data;
-
+export default function renderToString({ tag, children }, options = {}) {
     if (tag !== 'speak') {
         throw new Error(`SSML must start with a 'speak' tag, currently '${tag}'`);
     }
@@ -47,7 +45,7 @@ export default function renderToString(data, options = {}) {
         headless: true,
     });
 
-    renderNode(xml, data.children);
+    renderNode(xml, children);
 
     return xml.end(options);
 }
