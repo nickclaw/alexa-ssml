@@ -11,7 +11,7 @@ describe('ssml', function() {
 
             const data = <speak><Date format="ymd" /></speak>;
             const string = renderToString(data);
-            expect(string).to.contain('<say-as interpret-as="date" format="ymd"/>\n');
+            expect(string).to.contain('<say-as interpret-as="date" format="ymd"/>');
         });
 
         it('should throw if invalid elements are returned', function() {
