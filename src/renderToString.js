@@ -1,6 +1,4 @@
 import builder from 'xmlbuilder';
-import each from 'lodash/each';
-import get from 'lodash/get';
 import kebabCase from 'lodash/kebabCase';
 
 // custom stringify options for xml builder
@@ -20,8 +18,8 @@ const customStringifyOptions = {
  * @param {Array} children
  * @param {XMLNode} node
  */
-function renderNode(children, node) {
-    each(children, child => {
+function renderNode(node, children = []) {
+    Array.from(children).forEach(child => {
         if (child && child.tag) {
             node.ele(child.tag, child.props);
             renderNode(child.children, node);
@@ -38,16 +36,18 @@ function renderNode(children, node) {
  * @return {String}
  */
 export default function renderToString(data, options = {}) {
-    const rootTag = get(data, 'tag');
-    if (rootTag !== 'speak') {
-        throw new Error(`SSML must start with a 'speak' tag, currently '${rootTag}'`);
+    const { tag } = data;
+
+    if (tag !== 'speak') {
+        throw new Error(`SSML must start with a 'speak' tag, currently '${tag}'`);
     }
 
-    const xml = builder.create(data.tag, {
+    const xml = builder.create(tag, {
         stringify: customStringifyOptions,
         headless: true,
     });
-    renderNode(data.children, xml);
+
+    renderNode(xml, data.children);
 
     return xml.end(options);
 }
