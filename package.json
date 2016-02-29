@@ -21,6 +21,10 @@
   "bugs": {
     "url": "http://github.com/nickclaw/alexa-ssml/issues"
   },
+  "files": [
+    "lib",
+    "src"
+  ],
   "keywords": [
     "alexa",
     "skills",
