@@ -1,34 +1,31 @@
 import get from 'lodash/get';
+import identity from 'lodash/identity';
 import flattenDeep from 'lodash/flattenDeep';
 import * as schemas from './schema';
 import validateProps from './validateProps';
 
-export default function ssml(tag, props, ...args) {
+export default function ssml(tagName, props, ...args) {
     const children = flattenDeep(args.length ? args : get(props, 'children', []));
 
     // handle custom elements (only functions for now)
-    if (typeof tag === 'function') {
-        return tag({ ...props, children });
+    if (typeof tagName === 'function') {
+        return tagName({ ...props, children });
     }
 
     // make sure we have a valid tag
-    if (typeof tag !== 'string') {
-        throw new Error(`Invalid tag: ${tag}`);
+    if (typeof tagName !== 'string') {
+        throw new Error(`Invalid tag: ${tagName}`);
     }
 
-    //  make sure we have a known tag
-    const type = schemas[tag.toLowerCase()];
-    if (!type) {
-        throw new Error(`Unknown tag: ${tag}`);
+    // make sure we have a known tag
+    const { tag, schema, transform = identity } = schemas[tagName.toLowerCase()] || {};
+    if (!tag) {
+        throw new Error(`Unknown tag: ${tagName}`);
     }
-
-    // validate and transform props
-    let newProps = validateProps(props, type.schema);
-    newProps = type.transform(newProps);
 
     return {
+        tag,
+        props: transform(validateProps(props, schema)),
         children,
-        tag: type.tag,
-        props: newProps,
     };
 }

@@ -1,5 +1,3 @@
-import identity from 'lodash/identity';
-
 export const tag = 'audio';
 
 export const schema = {
@@ -15,5 +13,3 @@ export const schema = {
         },
     },
 };
-
-export const transform = identity;

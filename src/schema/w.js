@@ -1,5 +1,3 @@
-import identity from 'lodash/identity';
-
 export const tag = 'w';
 
 export const schema = {
@@ -19,5 +17,3 @@ export const schema = {
         },
     },
 };
-
-export const transform = identity;
