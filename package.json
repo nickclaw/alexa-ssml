@@ -7,13 +7,16 @@
   "scripts": {
     "build": "rm -rf lib && babel src --out-dir lib",
     "lint": "eslint src",
-    "pretest": "npm run lint",
-    "test": "mocha test",
+    "*pretest": "npm run lint",
+    "test": "ava --require babel-register **/__tests__/*-test.js",
     "prepublish": "in-publish && npm run test && npm run build || not-in-publish",
     "publish:major": "npm version major && npm publish",
     "publish:minor": "npm version minor && npm publish",
     "publish:patch": "npm version patch && npm publish",
     "postpublish": "git push origin master --tags"
+  },
+  "ava": {
+    "babel": "inherit"
   },
   "repository": {
     "type": "git",
@@ -42,10 +45,12 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.0.1",
+    "prop-types": "^0.2.0",
     "tv4": "^1.2.7",
     "xmlbuilder": "^4.2.1"
   },
   "devDependencies": {
+    "ava": "^0.15.2",
     "babel": "^6.3.26",
     "babel-cli": "^6.4.5",
     "babel-eslint": "^4.1.8",

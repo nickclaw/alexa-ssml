@@ -1,19 +1,9 @@
-export const tag = 'w';
+import PropTypes from '../prop-types';
 
-export const schema = {
-    title: 'w',
-    description: '',
-
-    type: 'object',
-    required: [],
-    properties: {
-        role: {
-            enum: [
-                'ivona:VB',
-                'ivona:VBD',
-                'ivona:NN',
-                'ivona:SENSE_1',
-            ],
-        },
-    },
-};
+export default {
+  tag: 'w',
+  propTypes: {
+    role: PropTypes.oneOf(['ivona:VB', 'ivona:VBD', 'ivona:NN', 'ivona:SENSE_1']).isRequired,
+    children: PropTypes.array.isRequired
+  }
+}

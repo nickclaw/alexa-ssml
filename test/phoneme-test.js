@@ -1,3 +1,0 @@
-describe('<phoneme /> tag', function() {
-
-});

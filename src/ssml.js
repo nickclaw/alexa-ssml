@@ -1,31 +1,21 @@
-import get from 'lodash/get';
-import identity from 'lodash/identity';
-import flattenDeep from 'lodash/flattenDeep';
-import * as schemas from './schema';
-import validateProps from './validateProps';
+import schema from './schema';
+import PropTypes from './prop-types';
 
-export default function ssml(tagName, props, ...args) {
-    const children = flattenDeep(args.length ? args : get(props, 'children', []));
+export default function ssml(tagName, props, ...children) {
+  const { tag, propTypes, defaultProps } = schema[tagName] || {};
 
-    // handle custom elements (only functions for now)
-    if (typeof tagName === 'function') {
-        return tagName({ ...props, children });
-    }
+  if (!tag) {
+    throw new Error(`Unsupported tag "${tagName}"`);
+  }
 
-    // make sure we have a valid tag
-    if (typeof tagName !== 'string') {
-        throw new Error(`Invalid tag: ${tagName}`);
-    }
+  const hasChildren = children && children.length;
+  const hasProps = props || hasChildren;
 
-    // make sure we have a known tag
-    const { tag, schema, transform = identity } = schemas[tagName.toLowerCase()] || {};
-    if (!tag) {
-        throw new Error(`Unknown tag: ${tagName}`);
-    }
+  const merged = {
+    ...(hasProps && { props: { ...props, ...(hasChildren && { children }) } })
+  };
 
-    return {
-        tag,
-        props: transform(validateProps(props, schema)),
-        children,
-    };
+  PropTypes.validateWithErrors(propTypes, merged.props, tag);
+
+  return { tag, ...merged };
 }

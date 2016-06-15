@@ -1,22 +1,10 @@
-export const tag = 'phoneme';
+import PropTypes from '../prop-types';
 
-export const schema = {
-    title: 'phoneme',
-    description: '',
-
-    type: 'object',
-    required: [],
-    properties: {
-        alphabet: {
-            enum: [
-                'ipa',
-                'x-sampa',
-                'nt-sampa',
-            ],
-        },
-
-        ph: {
-            type: 'string',
-        },
-    },
-};
+export default {
+  tag: 'phoneme',
+  propTypes: {
+    alphabet: PropTypes.oneOf(['ipa', 'x-sampa']).isRequired,
+    ph: PropTypes.string.isRequired,
+    children: PropTypes.array.isRequired
+  }
+}

@@ -1,2 +1,2 @@
 export ssml from './ssml';
-export renderToString from './renderToString';
+export render from './renderToString';

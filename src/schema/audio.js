@@ -1,15 +1,9 @@
-export const tag = 'audio';
+import PropTypes from '../prop-types';
 
-export const schema = {
-    title: 'audio',
-    description: '',
-
-    type: 'object',
-    required: ['src'],
-    properties: {
-        src: {
-            type: 'string',
-            pattern: '^https.*?',
-        },
-    },
-};
+export default {
+  tag: 'audio',
+  propTypes: {
+    src: PropTypes.match(/^https:\/\//),
+    children: PropTypes.none
+  }
+}
