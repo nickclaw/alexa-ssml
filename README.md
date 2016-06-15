@@ -23,22 +23,6 @@ const speech = (
 const ssmlString = render(speech);
 ```
 
-### Custom Elements
-
-```js
-import { ssml } from 'alexa-ssml';
-
-function LongPause(props) {
-    return <pause time={10000} />;
-}
-
-const data = (
-    <speak>
-        Foo <LongPause /> bar.
-    </speak>
-);
-```
-
 ### API
 
 ##### `ssml(tag, props, ...children) -> object`
