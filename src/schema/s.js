@@ -1,3 +1,8 @@
+import PropTypes from '../prop-types';
+
 export default {
-    tag: 's'
+    tag: 's',
+    propTypes: {
+        children: PropTypes.array.isRequired
+    }
 };
