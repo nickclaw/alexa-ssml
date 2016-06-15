@@ -1,3 +1,3 @@
 export default {
-  tag: 'speak'
-}
+    tag: 'speak'
+};

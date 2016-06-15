@@ -6,7 +6,7 @@
   "jsnext:main": "src/index.js",
   "scripts": {
     "build": "rm -rf lib && babel src --out-dir lib",
-    "lint": "eslint src",
+    "lint": "eslint src --fix",
     "*pretest": "npm run lint",
     "test": "ava --require babel-register **/__tests__/*-test.js",
     "prepublish": "in-publish && npm run test && npm run build || not-in-publish",

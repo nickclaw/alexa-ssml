@@ -8,12 +8,12 @@ import speak from './speak';
 import w from './w';
 
 export default {
-  audio,
-  'break': breakTag,
-  p,
-  phoneme,
-  s,
-  'say-as': sayAsTag,
-  speak,
-  w
-}
+    audio,
+    break: breakTag,
+    p,
+    phoneme,
+    s,
+    'say-as': sayAsTag,
+    speak,
+    w
+};
