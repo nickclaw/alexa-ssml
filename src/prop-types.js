@@ -8,7 +8,7 @@ export const match = (regex) => (props, propName, descriptiveName, locationName)
 };
 
 export const none = (props, propName, descriptiveName, locationName) => {
-    if (props[propName] !== null) {
+    if (props[propName] !== undefined) {
         return new Error(`Invalid ${locationName} "${propName}" supplied to "${descriptiveName}", expected none.`);
     }
 };

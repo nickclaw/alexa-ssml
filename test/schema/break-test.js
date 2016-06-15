@@ -1,5 +1,5 @@
 import test from 'ava';
-import ssml from '../../ssml';
+import ssml from '../../src/ssml';
 
 test('accepts valid strength values', t => {
     t.deepEqual(<break strength="weak" />, {
@@ -15,25 +15,7 @@ test('does not accept invalid strength values', t => {
 });
 
 test('does not accept children', t => {
-    t.throws(() => <break time={2000}>invalid</break>);
-});
-
-test('accepts time props specified as an integer', t => {
-    t.deepEqual(<break time={2000} />, {
-        tag: 'break',
-        props: {
-            time: 2000
-        }
-    });
-});
-
-test('accepts time props specified as a string', t => {
-    t.deepEqual(<break time="2000" />, {
-        tag: 'break',
-        props: {
-            time: '2000'
-        }
-    });
+    t.throws(() => <break time="2000ms">invalid</break>);
 });
 
 test('accepts time props specified with ms units', t => {
@@ -56,4 +38,12 @@ test('accepts time props specified with s units', t => {
 
 test('does not accept time props specified with invalid units', t => {
     t.throws(() => <break time="10px" />);
+});
+
+test('does not accept time props specified without units', t => {
+    t.throws(() => <break time="10" />);
+});
+
+test('does not accept time props specified using an integer', t => {
+    t.throws(() => <break time={10} />);
 });

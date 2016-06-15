@@ -1,5 +1,5 @@
 import test from 'ava';
-import PropTypes from '../index';
+import PropTypes from '../src/prop-types';
 
 test('match', t => {
     const validator = PropTypes.match(/foo/);
