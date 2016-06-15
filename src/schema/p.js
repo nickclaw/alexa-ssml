@@ -1,3 +1,8 @@
+import PropTypes from '../prop-types';
+
 export default {
-    tag: 'p'
+    tag: 'p',
+    propTypes: {
+        children: PropTypes.none
+    }
 };
