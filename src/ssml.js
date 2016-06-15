@@ -1,4 +1,4 @@
-import schema from './schema';
+import schema from './schema/index';
 import PropTypes from './prop-types';
 
 export default function ssml(tagName, props, ...children) {
