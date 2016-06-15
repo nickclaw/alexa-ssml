@@ -1,6 +1,5 @@
 import test from 'ava';
-import ssml from '../src/ssml';
-import render from '../src/render';
+import ssml, { render } from '../src';
 
 test('renders a string from SSML', t => {
   const speech = (

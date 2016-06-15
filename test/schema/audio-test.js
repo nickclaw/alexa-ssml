@@ -1,5 +1,5 @@
 import test from 'ava';
-import ssml from '../../src/ssml';
+import ssml from '../../src';
 
 test('src property must be present', t => {
     t.throws(() => <audio />);

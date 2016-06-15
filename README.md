@@ -10,7 +10,7 @@ Manipulate and validate the [subset of SSML](https://developer.amazon.com/public
 ### Example
 
 ```js
-import { ssml, render } from 'alexa-ssml';
+import ssml, { render } from 'alexa-ssml';
 
 const speech = (
     <speak>
@@ -20,7 +20,7 @@ const speech = (
     </speak>
 );
 
-const ssmlString = render(speech);
+const str = render(speech);
 ```
 
 ### API

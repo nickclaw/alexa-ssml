@@ -1,5 +1,5 @@
 import test from 'ava';
-import ssml from '../../src/ssml';
+import ssml from '../../src';
 
 test('accepts valid strength values', t => {
     t.deepEqual(<break strength="weak" />, {

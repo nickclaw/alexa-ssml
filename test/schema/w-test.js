@@ -1,5 +1,5 @@
 import test from 'ava';
-import ssml from '../../src/ssml';
+import ssml from '../../src';
 
 test('role property must be present', t => {
     t.throws(() => <w>read</w>);

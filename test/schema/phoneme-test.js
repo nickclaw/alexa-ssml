@@ -1,5 +1,5 @@
 import test from 'ava';
-import ssml from '../../src/ssml';
+import ssml from '../../src';
 
 test('alphabet and ph properties must be present', t => {
     t.deepEqual(<phoneme alphabet="ipa" ph="pɪˈkɑːn">pecan</phoneme>, {
