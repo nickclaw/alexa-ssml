@@ -1,12 +1,8 @@
-export const tag = 's';
+import PropTypes from '../prop-types';
 
-export const schema = {
-    title: 's',
-    description: '',
-
-    type: 'object',
-    required: [],
-    properties: {
-
-    },
+export default {
+    tag: 's',
+    propTypes: {
+        children: PropTypes.array.isRequired
+    }
 };

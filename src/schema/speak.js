@@ -1,12 +1,8 @@
-export const tag = 'speak';
+import PropTypes from '../prop-types';
 
-export const schema = {
-    title: 'speak',
-    description: '',
-
-    type: 'object',
-    required: [],
-    properties: {
-
-    },
+export default {
+    tag: 'speak',
+    propTypes: {
+        children: PropTypes.array.isRequired
+    }
 };

@@ -1,8 +1,19 @@
-export * as audio from './audio';
-export * as pause from './pause';
-export * as p from './p';
-export * as phoneme from './phoneme';
-export * as s from './s';
-export * as sayas from './sayAs';
-export * as speak from './speak';
-export * as w from './w';
+import audio from './audio';
+import breakTag from './break';
+import p from './p';
+import phoneme from './phoneme';
+import s from './s';
+import sayAsTag from './say-as';
+import speak from './speak';
+import w from './w';
+
+export default {
+    audio,
+    break: breakTag,
+    p,
+    phoneme,
+    s,
+    'say-as': sayAsTag,
+    speak,
+    w
+};

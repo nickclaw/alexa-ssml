@@ -1,59 +1,36 @@
 # alexa-ssml [![Build Status](https://travis-ci.org/nickclaw/alexa-ssml.svg?branch=master)](https://travis-ci.org/nickclaw/alexa-ssml)
 
-Manipulate and validate the [subset of SSML](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference) supported by the [Alexa Skills Kit](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit)
+Manipulate and validate the [subset of SSML](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference) supported by the [Alexa Skills Kit](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit). Compatible with `transform-react-jsx` [babel plugin](https://babeljs.io/docs/plugins/transform-react-jsx/).
 
-> npm install alexa-ssml
-
-* Only supports [limited syntax](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference)
-* Camel case tag names and properties.
-* `<break />` changed to `<pause />`
-* Compatible with `transform-react-jsx` [babel plugin](https://babeljs.io/docs/plugins/transform-react-jsx/)
-
+```bash
+$ npm install alexa-ssml
+```
 
 ### Example
 
 ```js
-import { ssml, renderToString } from 'alexa-ssml';
+import ssml, { render } from 'alexa-ssml';
 
-const tags = (
+const speech = (
     <speak>
         Here is a number <w role="ivona:VBD">read</w> as a cardinal number:
-        <sayAs interpretAs="cardinal">12345</sayAs>.
-        Here is a word spelled out: <sayAs interpretAs="spell-out">hello</sayAs>.
+        <say-as interpret-as="cardinal">12345</say-as>.
+        Here is a word spelled out: <say-as interpret-as="spell-out">hello</say-as>.
     </speak>
 );
 
-const raw = renderToString(tags);
+const str = render(speech);
 ```
-
-### Custom Elements
-
-```js
-import { ssml } from 'alexa-ssml';
-
-function LongPause(props) {
-    return <pause time={10000} />
-}
-
-const data = (
-    <speak>
-        Foo <LongPause /> bar.
-    </speak>
-)
-```
-
 
 ### API
 
 ##### `ssml(tag, props, ...children) -> object`
- * `tag` can be  a string or function
- * Returns object like `{ tag, props, children }`
+ * `tag` must be a string
+ * Returns object like `{ tag, props: { children } }`
 
-##### `renderToString(data, [options]) -> string`
+##### `render(tree) -> string`
  * Takes in object from `ssml` function
- * Must be wrapped in a `"speak"` tag
- * Supported options:
-   * `pretty`, defaults to false. Makes the SSML easier to read.
+ * Must be wrapped in a `speak` tag
 
 
 ### JSX Syntax

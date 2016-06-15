@@ -1,2 +1,3 @@
+export render from './render';
 export ssml from './ssml';
-export renderToString from './renderToString';
+export default from './ssml';
