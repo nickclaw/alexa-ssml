@@ -26,7 +26,7 @@ const str = render(speech);
 
 ##### `ssml(tag, props, ...children) -> object`
  * `tag` must be a string
- * Returns object like `{ tag, props }`
+ * Returns object like `{ tag, props: { children } }`
 
 ##### `render(tree) -> string`
  * Takes in object from `ssml` function
