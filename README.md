@@ -1,11 +1,10 @@
 # alexa-ssml [![Build Status](https://travis-ci.org/nickclaw/alexa-ssml.svg?branch=master)](https://travis-ci.org/nickclaw/alexa-ssml)
 
-Manipulate and validate the [subset of SSML](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference) supported by the [Alexa Skills Kit](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit)
+Manipulate and validate the [subset of SSML](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference) supported by the [Alexa Skills Kit](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit). Compatible with `transform-react-jsx` [babel plugin](https://babeljs.io/docs/plugins/transform-react-jsx/).
 
-> npm install alexa-ssml
-
-* Only supports [limited syntax](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference)
-* Compatible with `transform-react-jsx` [babel plugin](https://babeljs.io/docs/plugins/transform-react-jsx/)
+```bash
+$ npm install alexa-ssml
+```
 
 ### Example
 
@@ -26,14 +25,12 @@ const str = render(speech);
 ### API
 
 ##### `ssml(tag, props, ...children) -> object`
- * `tag` can be  a string or function
- * Returns object like `{ tag, props, children }`
+ * `tag` must be a string
+ * Returns object like `{ tag, props }`
 
-##### `render(tree, [options]) -> string`
+##### `render(tree) -> string`
  * Takes in object from `ssml` function
- * Must be wrapped in a `"speak"` tag
- * Supported options:
-   * `pretty`, defaults to false. Makes the SSML easier to read.
+ * Must be wrapped in a `speak` tag
 
 
 ### JSX Syntax
